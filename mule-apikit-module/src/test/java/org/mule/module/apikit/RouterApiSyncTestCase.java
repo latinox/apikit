@@ -6,8 +6,7 @@
  */
 package org.mule.module.apikit;
 
-import com.jayway.restassured.RestAssured;
-
+import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -20,8 +19,8 @@ import org.mule.test.infrastructure.process.rules.MuleDeployment;
 
 import java.io.File;
 
+import static io.restassured.RestAssured.given;
 import static org.mule.module.apikit.helpers.AbstractEEAppControl.builderWithDefaultConfig;
-import static com.jayway.restassured.RestAssured.given;
 import static org.mule.runtime.deployment.model.api.application.ApplicationDescriptor.MULE_APPLICATION_CLASSIFIER;
 import static org.mule.test.infrastructure.maven.MavenTestUtils.installMavenArtifact;
 

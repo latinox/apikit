@@ -21,6 +21,11 @@ import amf.client.validate.ValidationReport;
 import amf.client.validate.ValidationResult;
 import amf.plugins.features.validation.AMFValidatorPlugin;
 import amf.plugins.xml.XmlValidationPlugin;
+import org.apache.commons.io.IOUtils;
+import org.mule.amf.impl.exceptions.ParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,15 +33,9 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import org.apache.commons.io.IOUtils;
-import org.mule.amf.impl.exceptions.ParserException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import static com.sun.jmx.mbeanserver.Util.cast;
 import static org.apache.commons.io.FilenameUtils.getExtension;
 
 public class DocumentParser {
@@ -119,8 +118,8 @@ public class DocumentParser {
   }
 
   public static WebApi getWebApi(final BaseUnit baseUnit) throws ParserException {
-    final Document document = cast(AMF.resolveRaml10(baseUnit));
-    return cast(document.encodes());
+    final Document document = (Document) AMF.resolveRaml10(baseUnit);
+    return (WebApi) document.encodes();
   }
 
   public static ValidationReport getParsingReport(final Parser parser, final ProfileName profile) throws ParserException {

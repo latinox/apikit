@@ -6,9 +6,10 @@
  */
 package org.mule.module.apikit.metadata.utils;
 
+import org.mule.runtime.api.util.Pair;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import javafx.util.Pair;
 
 public class MetadataFixer {
 
@@ -39,8 +40,8 @@ public class MetadataFixer {
 
     final Pair<String, String> keyValue = keyValue(line);
 
-    String key = keyValue.getKey();
-    String value = keyValue.getValue();
+    String key = keyValue.getFirst();
+    String value = keyValue.getSecond();
 
     final boolean endsWithComma = line.trim().endsWith(",");
     final boolean isArray = isArray(value);

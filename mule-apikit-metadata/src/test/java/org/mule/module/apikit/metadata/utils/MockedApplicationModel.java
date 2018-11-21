@@ -6,26 +6,23 @@
  */
 package org.mule.module.apikit.metadata.utils;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptySet;
-import static org.mule.runtime.config.api.XmlConfigurationDocumentLoader.noValidationDocumentLoader;
-
+import com.google.common.base.Preconditions;
+import org.apache.commons.io.IOUtils;
 import org.mule.runtime.api.meta.model.ExtensionModel;
 import org.mule.runtime.config.api.dsl.model.ComponentBuildingDefinitionRegistry;
 import org.mule.runtime.config.api.dsl.model.ResourceProvider;
 import org.mule.runtime.config.api.dsl.processor.ArtifactConfig;
-import org.mule.runtime.config.api.dsl.processor.ConfigFile;
-import org.mule.runtime.config.api.dsl.processor.ConfigLine;
-import org.mule.runtime.config.api.dsl.processor.xml.XmlApplicationParser;
 import org.mule.runtime.config.internal.model.ApplicationModel;
 import org.mule.runtime.config.internal.model.ComponentModel;
 import org.mule.runtime.core.api.MuleContext;
 import org.mule.runtime.core.api.registry.ServiceRegistry;
 import org.mule.runtime.core.api.registry.SpiServiceRegistry;
 import org.mule.runtime.dsl.api.component.ComponentBuildingDefinitionProvider;
+import org.mule.runtime.dsl.api.xml.parser.ConfigFile;
+import org.mule.runtime.dsl.api.xml.parser.ConfigLine;
+import org.mule.runtime.dsl.internal.xml.parser.XmlApplicationParser;
 import org.mule.runtime.module.extension.internal.config.ExtensionBuildingDefinitionProvider;
-
-import com.google.common.base.Preconditions;
+import org.w3c.dom.Document;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,8 +32,9 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
-import org.w3c.dom.Document;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
+import static org.mule.runtime.dsl.api.xml.parser.XmlConfigurationDocumentLoader.noValidationDocumentLoader;
 
 public class MockedApplicationModel implements ApplicationModelWrapper {
 
